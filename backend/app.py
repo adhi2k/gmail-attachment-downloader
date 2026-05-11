@@ -9,6 +9,13 @@ import traceback
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/')
+def index():
+    return jsonify({
+        'status': 'online', 
+        'message': 'Gmail Attachment Downloader API is running! Use the /download endpoint to fetch attachments.'
+    })
+
 @app.route('/download', methods=['POST'])
 def download_attachments():
     try:
