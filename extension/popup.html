@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="glass-container">
+    <div class="header">
+      <div class="icon-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+      </div>
+      <h2>Attachment Downloader</h2>
+    </div>
+
+    <form id="downloadForm">
+      <div class="input-group">
+        <label for="email">Gmail Address</label>
+        <input type="email" id="email" placeholder="you@gmail.com" required>
+      </div>
+
+      <div class="input-group">
+        <label for="password">App Password</label>
+        <input type="password" id="password" placeholder="16-digit app password" required>
+      </div>
+
+      <div class="date-row">
+        <div class="input-group">
+          <label for="start">Start Date</label>
+          <input type="date" id="start" required>
+        </div>
+        <div class="input-group">
+          <label for="end">End Date</label>
+          <input type="date" id="end" required>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="extension">File Extension (Optional)</label>
+        <input type="text" id="extension" placeholder="e.g. .pdf, .docx, .jpg">
+      </div>
+
+      <button type="submit" id="downloadBtn">
+        <span class="btn-text">Download Attachments</span>
+        <div class="loader hidden" id="loader"></div>
+      </button>
+    </form>
+
+    <div id="statusBox" class="status-box hidden">
+      <p id="status"></p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
