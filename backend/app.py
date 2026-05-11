@@ -39,7 +39,8 @@ def download_attachments():
         memory_file = io.BytesIO()
         
         with zipfile.ZipFile(memory_file, 'w', zipfile.ZIP_DEFLATED) as zf:
-            with MailBox('imap.gmail.com').login(email, password) as mailbox:
+            mailbox = MailBox('imap.gmail.com').login(email, password)
+            try:
                 messages = mailbox.fetch(
                     AND(date_gte=start_date, date_lt=end_date),
                     reverse=True
@@ -63,6 +64,13 @@ def download_attachments():
                         # Use a safe path inside the zip file
                         zip_path = f"{mail_date}/{filename}"
                         zf.writestr(zip_path, att.payload)
+            except Exception as fetch_err:
+                print("Warning during fetch:", fetch_err)
+            finally:
+                try:
+                    mailbox.logout()
+                except Exception as logout_err:
+                    print("Ignored logout error:", logout_err)
 
         memory_file.seek(0)
         
